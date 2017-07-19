@@ -10,7 +10,7 @@ class Todo extends React.Component{
     }
     render() {
       return(
-        this.props.completed ?
+        !this.props.completed ?
         <li> <button> X </button>
           {this.props.task}
         </li> :

@@ -8,14 +8,11 @@ class TodoList extends React.Component{
   }
   render() {
     return(
-    <div>
-      <InputLine/>
       <ul>
         {this.props.todos.map((item) =>
-          <Todo key={item.taskText} task={item.taskText} completed={item.completed} />
+          <Todo key={item.taskText + item.completed} task={item.taskText} completed={item.completed} />
         )}
       </ul>
-    </div>
     )
   }
 }
