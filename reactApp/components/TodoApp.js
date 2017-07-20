@@ -16,6 +16,8 @@ class TodoApp extends React.Component{
       todos:[]
     }
     this.addTodo = this.addTodo.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
+    this.complete = this.complete.bind(this)
   }
   addTodo(event){
     console.log("this is event " + event);
@@ -30,7 +32,23 @@ class TodoApp extends React.Component{
     this.setState({
       todos:taskArray
     })
-
+  }
+  removeTodo(index){
+    // index.preventDefault()
+    var taskArray = this.state.todos
+    var newArray = taskArray.splice(index, 1)
+    console.log(taskArray)
+    this.setState({
+      todos:taskArray
+    })
+  }
+  complete(index) {
+    console.log('this is index '+index);
+    var taskArray = this.state.todos;
+    taskArray[index].completed = !taskArray[index].completed
+    console.log(taskArray[index].completed); this.setState({
+      todos: taskArray
+    })
   }
   componentDidMount(){
     this.setState({
@@ -41,7 +59,7 @@ class TodoApp extends React.Component{
     return (
       <div>
         <InputLine submit={this.addTodo} />
-        <TodoList todos={this.state.todos}/>
+        <TodoList todos={this.state.todos} todoXClick={this.removeTodo} completeTask ={this.complete}/>
       </div>
     )
   }

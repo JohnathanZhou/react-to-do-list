@@ -11,12 +11,15 @@ class Todo extends React.Component{
     render() {
       return(
         !this.props.completed ?
-        <li> <button> X </button>
+        <li> <button onClick={this.props.xClick}> X </button>
           {this.props.task}
+        <button onClick={this.props.complete}> Complete </button>
         </li> :
-        <li> <button> X </button>
+        <li> <button onClick={this.props.xClick}> X </button>
           <strike>{this.props.task} </strike>
+          <button onClick={this.props.complete}> Uncomplete </button>
         </li>
+
       )
     }
 }
