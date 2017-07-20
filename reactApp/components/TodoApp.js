@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom'
 import Todo from './Todo'
 import InputLine from './InputLine'
 import TodoList from './TodoList'
+import axios from 'axios'
 const dummyData = [
   { taskText: "Work out", completed: false },
   { taskText: "Watch GOT", completed: false },
   { taskText: "Eat unhealthy", completed: true },
   { taskText: "Do laundry", completed: false }
 ]
+const dbUrl = "localhost:3000/db";
+
 class TodoApp extends React.Component{
   constructor(props) {
     super(props);
@@ -27,11 +30,28 @@ class TodoApp extends React.Component{
       completed:false
     }
     taskArray.push(newObj);
-    console.log("this is your new object",newObj);
-    console.log("This is your taskArray", taskArray);
+    // console.log("this is your new object",newObj);
+    // console.log("This is your taskArray", taskArray);
     this.setState({
       todos:taskArray
     })
+    axios.post('/add', newObj)
+      .then(function(response) {
+        // var newItem = new TodoItem(response)
+        console.log(response.data);
+      })
+      .catch(function(error) {
+        console.log('hello this is error');
+      })
+    //
+    // axios.get(dbUrl + '/testing')
+    // .then(function(response) {
+    //   console.log("got here");
+    // })
+    // .catch(function(err) {
+    //   console.log(err);
+    // })
+
   }
   removeTodo(index){
     // index.preventDefault()

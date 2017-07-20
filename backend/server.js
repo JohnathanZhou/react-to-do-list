@@ -1,12 +1,14 @@
 const express = require('express');
 const app = express();
 const dbRoutes = require('./routes/databaseAccess.js');
-
+const mongoose = require('mongoose')
+const dbUrl = "localhost:3000/db";
+const bodyParser = require('body-parser')
 mongoose.connect(process.env.MONGODB_URI)
 // This line makes the build folder publicly available.
 app.use(express.static('build'));
-
-app.use('/db', dbRoutes);
+app.use(bodyParser.json())
+app.use(dbRoutes);
 
 app.listen(3000, () => {
   console.log('Server for React Todo App listening on port 3000!')

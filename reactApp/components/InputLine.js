@@ -24,7 +24,7 @@ class InputLine extends React.Component{
   }
   render() {
     return(
-      <form>
+      <form method='post' action='localhost:3000/db/add'>
         <input onChange = {this.handleTyping} value = {this.state.typeText} type="text" placeholder="task" />
         <button  onClick = {this.handleSubmit} type='submit'
           > Add todo </button>
